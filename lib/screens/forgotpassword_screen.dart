@@ -1,21 +1,20 @@
-import 'package:clot/screens/forgotpassword_screen.dart';
-import 'package:clot/screens/home_screen.dart';
-import 'package:clot/widgets/customised_button.dart';
-import 'package:flutter/gestures.dart';
+import 'package:clot/screens/ResetSentScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PasssigninScreen extends StatefulWidget {
-  const PasssigninScreen({super.key});
+import '../widgets/customised_button.dart';
+
+class ForgotpasswordScreen extends StatefulWidget {
+  const ForgotpasswordScreen({super.key});
 
   @override
-  State<PasssigninScreen> createState() => _PasssigninScreenState();
+  State<ForgotpasswordScreen> createState() => _ForgotpasswordScreenState();
 }
 
-class _PasssigninScreenState extends State<PasssigninScreen> {
+class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +25,16 @@ class _PasssigninScreenState extends State<PasssigninScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back_ios_new),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 123),
                 child: Text(
-                  'Sign in',
+                  'Forgot Password',
                   style: GoogleFonts.poppins(
                     fontSize: 32,
                     fontWeight: FontWeight.w700,
@@ -44,18 +49,18 @@ class _PasssigninScreenState extends State<PasssigninScreen> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: passwordController,
+                      controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Color(0xffF4F4F4),
-                        hintText: 'Password',
+                        hintText: 'Enter email address',
                         hintStyle: TextStyle(color: Color(0xff27272780)),
                       ),
 
                       validator: (val) {
                         if (val == null || val.isEmpty) {
-                          return "Please enter password";
+                          return "Please enter email";
                         }
                         if (val.length <= 5) {
                           return 'PLease enter more than 5 characters';
@@ -75,36 +80,14 @@ class _PasssigninScreenState extends State<PasssigninScreen> {
                   if (_formKey.currentState!.validate()) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(
+                        builder: (context) => ResetSentScreen(),
+                      ),
                     );
                   }
                 },
               ),
               SizedBox(height: 16),
-              Text.rich(
-                TextSpan(
-                  text: 'Forgot Password? ',
-                  style: TextStyle(color: Colors.grey),
-                  children: [
-                    TextSpan(
-                      text: 'Reset',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ForgotpasswordScreen(),
-                            ),
-                          );
-                        },
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),

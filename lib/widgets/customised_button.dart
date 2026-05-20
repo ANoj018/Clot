@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../constants/app_color.dart';
 
-class ContinueButton extends StatelessWidget {
+class CustomisedButton extends StatelessWidget {
   final VoidCallback onTap;
+  final String label;
+  final double width;
 
-  const ContinueButton({super.key, required this.onTap});
+  CustomisedButton({
+    super.key,
+    required this.onTap,
+    required this.label,
+    required this.width,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +20,13 @@ class ContinueButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 50,
-        width: double.infinity,
+        width: width,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: AppColor.themeColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Text('Continue', style: TextStyle(color: Colors.white)),
+        child: Text(label, style: const TextStyle(color: Colors.white)),
       ),
     );
   }

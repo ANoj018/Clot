@@ -1,6 +1,7 @@
 import 'package:clot/constants/app_color.dart';
+import 'package:clot/screens/createAccount_screen.dart';
 import 'package:clot/screens/passSignin_screen.dart';
-import 'package:clot/widgets/continue_button.dart';
+import 'package:clot/widgets/customised_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +16,6 @@ class _SigninScreenState extends State<SigninScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
-  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
+                        border: InputBorder.none,
                         filled: true,
                         fillColor: Color(0xffF4F4F4),
                         hintText: 'Email Address',
@@ -74,7 +75,10 @@ class _SigninScreenState extends State<SigninScreen> {
                   ],
                 ),
               ),
-              ContinueButton(
+              CustomisedButton(
+                width: double.infinity,
+
+                label: 'Continue',
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
                     Navigator.push(
@@ -94,12 +98,22 @@ class _SigninScreenState extends State<SigninScreen> {
                     'Don\'t have an Account ?',
                     style: TextStyle(fontSize: 12),
                   ),
-                  Text(
-                    '  Create one',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w800,
-                      color: AppColor.themeColor,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CreateaccountScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      '  Create one',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w800,
+                        color: AppColor.themeColor,
+                      ),
                     ),
                   ),
                 ],
