@@ -6,12 +6,14 @@ class CustomisedButton extends StatelessWidget {
   final VoidCallback onTap;
   final String label;
   final double width;
+  final bool isSelected;
 
   CustomisedButton({
     super.key,
     required this.onTap,
     required this.label,
     required this.width,
+    this.isSelected = false,
   });
 
   @override
@@ -23,10 +25,10 @@ class CustomisedButton extends StatelessWidget {
         width: width,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: AppColor.themeColor,
+          color: isSelected ? Color(0xffF4F4F4) : AppColor.themeColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Text(label, style: const TextStyle(color: Colors.white)),
+        child: Text(label, style: const TextStyle(color: Colors.black)),
       ),
     );
   }

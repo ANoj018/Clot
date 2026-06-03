@@ -22,73 +22,75 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(23),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.arrow_back_ios_new),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 123),
-                child: Text(
-                  'Forgot Password',
-                  style: GoogleFonts.poppins(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xfff272727),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back_ios_new),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 123),
+                  child: Text(
+                    'Forgot Password',
+                    style: GoogleFonts.poppins(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xfff272727),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 20),
+                SizedBox(height: 20),
 
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xffF4F4F4),
-                        hintText: 'Enter email address',
-                        hintStyle: TextStyle(color: Color(0xff27272780)),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xffF4F4F4),
+                          hintText: 'Enter email address',
+                          hintStyle: TextStyle(color: Color(0xff27272780)),
+                        ),
+
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return "Please enter email";
+                          }
+                          if (val.length <= 5) {
+                            return 'PLease enter more than 5 characters';
+                          }
+                          return null;
+                        },
                       ),
-
-                      validator: (val) {
-                        if (val == null || val.isEmpty) {
-                          return "Please enter email";
-                        }
-                        if (val.length <= 5) {
-                          return 'PLease enter more than 5 characters';
-                        }
-                        return null;
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 16),
-              CustomisedButton(
-                width: double.infinity,
+                SizedBox(height: 16),
+                CustomisedButton(
+                  width: double.infinity,
 
-                label: 'Continue',
-                onTap: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ResetSentScreen(),
-                      ),
-                    );
-                  }
-                },
-              ),
-              SizedBox(height: 16),
-            ],
+                  label: 'Continue',
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResetSentScreen(),
+                        ),
+                      );
+                    }
+                  },
+                ),
+                SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
       ),

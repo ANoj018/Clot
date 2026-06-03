@@ -10,29 +10,31 @@ class ResetSentScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('assets/icons/email image.png', scale: 5),
-              SizedBox(height: 24),
-              Text(
-                'We Sent you an Email to reset \n        '
-                '        your password.',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(height: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/icons/email image.png', scale: 5),
+                SizedBox(height: 24),
+                Text(
+                  'We Sent you an Email to reset \n        '
+                  '        your password.',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                ),
+                SizedBox(height: 20),
 
-              CustomisedButton(
-                width: 159,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SigninScreen()),
-                  );
-                },
-                label: 'Return to Login',
-              ),
-            ],
+                CustomisedButton(
+                  width: 159,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SigninScreen()),
+                    );
+                  },
+                  label: 'Return to Login',
+                ),
+              ],
+            ),
           ),
         ),
       ),
