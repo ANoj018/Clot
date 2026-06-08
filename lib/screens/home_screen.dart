@@ -1,8 +1,10 @@
 import 'package:clot/constants/app_constants.dart';
-import 'package:clot/constants/categoriesModel.dart';
+import 'package:clot/models/product_Models.dart';
 import 'package:clot/screens/cate_Seeall_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../models/categories_Model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,6 +14,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isFavorite = false;
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,6 +154,103 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                   ),
+                ),
+
+                SizedBox(height: 5),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Top Selling', style: AppConstants.headingText),
+                    Text('See All>>', style: AppConstants.subheadingText),
+                  ],
+                ),
+
+                SizedBox(height: 15),
+
+                SizedBox(
+                  height: 300,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 180,
+                        margin: const EdgeInsets.only(right: 15),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                Image.asset(
+                                  products[index].image,
+                                  height: 230,
+                                  width: 180,
+                                  fit: BoxFit.cover,
+                                ),
+                                Positioned(
+                                  top: 10,
+                                  right: 10,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        products[index].isFavorite =
+                                            !products[index].isFavorite;
+                                      });
+                                    },
+                                    icon: Icon(
+                                      products[index].isFavorite
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(products[index].title, maxLines: 2),
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              child: Text(
+                                products[index].price,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+                SizedBox(height: 20),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'New In',
+                      style: TextStyle(
+                        color: Color(0xfff8E6CEF),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text('See All>>', style: AppConstants.subheadingText),
+                  ],
                 ),
               ],
             ),

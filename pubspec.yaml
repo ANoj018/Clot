@@ -67,6 +67,7 @@ flutter:
     - assets/
     - assets/icons/
     - assets/cate-image/
+    - assets/product-image/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

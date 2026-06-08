@@ -28,7 +28,10 @@ class CustomisedButton extends StatelessWidget {
           color: isSelected ? Color(0xffF4F4F4) : AppColor.themeColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Text(label, style: const TextStyle(color: Colors.black)),
+        child: Text(
+          label,
+          style: TextStyle(color: isSelected ? Colors.black : Colors.white),
+        ),
       ),
     );
   }
