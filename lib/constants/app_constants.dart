@@ -7,4 +7,16 @@ class AppConstants {
     fontWeight: FontWeight.w700,
     color: Color(0xfff272727),
   );
+
+  static TextStyle headingText = GoogleFonts.gabarito(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: Color(0xfff272727),
+  );
+
+  static TextStyle subheadingText = GoogleFonts.gabarito(
+    fontSize: 16,
+    // fontWeight: FontWeight.w500,
+    color: Color(0xfff272727),
+  );
 }

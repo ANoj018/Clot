@@ -1,5 +1,5 @@
 import 'package:clot/constants/app_color.dart';
-import 'package:clot/screens/home_screen.dart';
+import 'package:clot/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.themeColor),
       ),
-      home: const HomeScreen(),
+      home: const OnboardingScreen(),
     );
   }
 }
